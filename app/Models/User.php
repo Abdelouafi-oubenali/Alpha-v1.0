@@ -8,11 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
+use function PHPUnit\Framework\returnSelf;
+
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
-    
+
     use HasRoles;
 
     /**
@@ -24,7 +26,22 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'photo_profil',
+        'téléphone ',
+        'rôle',
+        'entreprise_id ',
+        'statut',
+        'type_contrat',
     ];
+
+    // les rolesion de 
+    public function entreprise (){
+        return $this->belongsTo(Entreprise::class);
+    }
+
+    public function employe(){
+        return $this->hasOne(Employe::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
