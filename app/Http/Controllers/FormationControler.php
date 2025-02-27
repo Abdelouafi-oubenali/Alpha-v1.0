@@ -21,7 +21,7 @@ class FormationControler extends Controller
      */
     public function create()
     {
-        //
+        return view('formation.create');
     }
 
     /**
@@ -29,7 +29,13 @@ class FormationControler extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Formation::create([
+            'titre' => $request->titre,
+            'description' => $request->description,
+            'date_debut' => $request->date_debut,
+            'date_fin' => $request->date_fin,
+        ]);
+        return redirect('formasion')->with('success', 'Formation ajoutée avec succès !');  
     }
 
     /**
@@ -37,7 +43,8 @@ class FormationControler extends Controller
      */
     public function show(string $id)
     {
-        //
+
+
     }
 
     /**
@@ -45,7 +52,8 @@ class FormationControler extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $formations = Formation::findOrFail($id);
+        return view('formation.edit', compact('formations'));
     }
 
     /**
@@ -53,7 +61,14 @@ class FormationControler extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $formations = Formation::findOrFail($id);
+        $formations->update([
+            'titre' => $request->titre,
+            'description' => $request->description,
+            'date_debut' => $request->date_debut,
+            'date_fin' => $request->date_fin,
+        ]);
+        return redirect('formasion')->with('success', 'Formation modifiée avec succès !');
     }
 
     /**
@@ -61,6 +76,8 @@ class FormationControler extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $formations = Formation::findOrFail($id);
+        $formations->delete();
+        return redirect('formasion')->with('success', 'Formation supprimée avec succès !');
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Formation extends Model
 {
     protected $fillable = [
-        'titre', 'description', 'date_debut', 'date_fin', 'employe_id'
+        'titre', 'description', 'date_debut', 'date_fin'
     ];
 
     public function employe(): BelongsTo
