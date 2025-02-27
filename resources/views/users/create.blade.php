@@ -16,7 +16,7 @@
                 <div class="col-span-2 md:col-span-1">
                     <label for="name" class="block text-sm font-medium text-gray-700">Nom complet</label>
                     
-                    <input type="text" name="name" id="name" value="{{ old('name') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
+                    <input type="text" name="nom" id="name" value="{{ old('name') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
                     @error('name')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
@@ -62,20 +62,35 @@
                 </div>
 
                 <!-- department ID -->
-                {{-- <div class="col-span-2 md:col-span-1">
-                    <label for="entreprise_id" class="block text-sm font-medium text-gray-700">Entreprise</label>
-                    <select name="entreprise_id" id="entreprise_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                        <option value="">Sélectionner une entreprise</option>
-                        @foreach($entreprises as $entreprise)
-                            <option value="{{ $entreprise->id }}" {{ old('entreprise_id') == $entreprise->id ? 'selected' : '' }}>
-                                {{ $entreprise->nom }}
+                <div class="col-span-2 md:col-span-1">
+                    <label for="roleId" class="block text-sm font-medium text-gray-700">roles</label>
+                    <select name="roleName" id="roleId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        <option value="">Sélectionner les role</option>
+                        @foreach($roles as $role)
+                            <option value="{{ $role->id }}" {{ old('roleId') == $role->id ? 'selected' : '' }}>
+                                {{ $role->nom }}
                             </option>
                         @endforeach
                     </select>
-                    @error('entreprise_id')
+                    @error('roleId')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
-                </div> --}}
+                </div>
+
+                   <div class="col-span-2 md:col-span-1">
+                    <label for="postId" class="block text-sm font-medium text-gray-700">post</label>
+                    <select name="PostName" id="postId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        <option value="postId">Sélectionner post</option>
+                        @foreach($posts as $post)
+                            <option value="{{ $post->id }}" {{ old('postId') == $post->id ? 'selected' : '' }}>
+                                {{ $post->nom }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('postId')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
 
                 <!-- Type de contrat -->
                 <div class="col-span-2 md:col-span-1">

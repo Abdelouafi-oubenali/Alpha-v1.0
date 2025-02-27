@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\models\User;
+use App\models\Role;
+use App\models\Post;
+
+
 
 class UserController extends Controller
 {
@@ -21,7 +25,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $roles = Role::all();
+        $posts = Post::all();
+        return view('users.create',compact('roles','posts'));
     }
  
     /**
@@ -32,9 +38,10 @@ class UserController extends Controller
         $entreprise_id = '1';
 
         User::create([
-            'name' => $request->name,
+            'name' => $request->nom,
             'email' => $request->email,
-            // 'email_verified_at' => $request->email_confirmation,
+            'roleId' => $request->roleName,
+            'posIdt' => $request->PostName,
             'password' => bcrypt($request->password), 
             'photo_profil' => $request->photo_profil,
             'téléphone' => $request->téléphone,
