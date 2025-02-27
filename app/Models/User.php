@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 use function PHPUnit\Framework\returnSelf;
 
@@ -33,6 +34,16 @@ class User extends Authenticatable
 
     public function employe(){
         return $this->hasOne(Employe::class);
+    }
+
+    public function formations(): HasMany
+    {
+        return $this->hasMany(Formation::class, 'employe_id');
+    }
+
+    public function carrieres(): HasMany
+    {
+        return $this->hasMany(Carriere::class, 'employe_id');
     }
 
     /**

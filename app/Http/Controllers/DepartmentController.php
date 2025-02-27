@@ -40,7 +40,7 @@ class DepartmentController extends Controller
             'responsable_id' => $userId,
             'entreprise_id' => $entreprise_id
         ]);
-        return redirect('departments')->with('success', 'departement ajoutée avec succès !');
+        return redirect('departements')->with('success', 'departement ajoutée avec succès !');
 
     }
 
@@ -59,8 +59,8 @@ class DepartmentController extends Controller
     public function edit($id)
     {
         $users = User::all();  
-        $department = Departement::findOrFail($id);
-        return view('departements.edit', compact('department','users')); 
+        $departement = Departement::findOrFail($id);
+        return view('departements.edit', compact('departement','users')); 
     }
 
     /**
@@ -79,7 +79,7 @@ class DepartmentController extends Controller
             'entreprise_id' => $entreprise_id,
         ]);
     
-        return redirect()->route('departments.index')->with('success', 'Département mis à jour avec succès!');
+        return redirect('departements')->with('success', 'departement ajoutée avec succès !');
     }
     
 
@@ -92,7 +92,7 @@ class DepartmentController extends Controller
         $department = Departement::findOrFail($id);
     
         $department->delete();
-        return redirect()->route('departments.index')->with('success', 'deleted');
+        return redirect('departements')->with('success', 'departement ajoutée avec succès !');
     }
     
 }
