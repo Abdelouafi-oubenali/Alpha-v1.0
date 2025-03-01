@@ -40,7 +40,7 @@ class UserController extends Controller
         User::create([
             'name' => $request->nom,
             'email' => $request->email,
-            'roleId' => $request->roleName,
+            'role_id' => $request->roleName,
             'posIdt' => $request->PostName,
             'password' => bcrypt($request->password), 
             'photo_profil' => $request->photo_profil,

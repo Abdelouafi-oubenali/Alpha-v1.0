@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-
+use  App\Models\Parcours;
 use function PHPUnit\Framework\returnSelf;
 
 class User extends Authenticatable
@@ -24,7 +24,7 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name', 'email', 'email_verified_at', 'password', 'photo_profil', 'téléphone', 'entreprise_id', 'posIdt'
+        'name', 'email', 'email_verified_at', 'password', 'photo_profil', 'téléphone', 'entreprise_id', 'posIdt','role_id'
     ];
 
     // les rolesion de 
@@ -45,6 +45,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Carriere::class, 'employe_id');
     }
+    // Dans le modèle User.php
+    public function parcours()
+    {
+        return $this->hasMany(Parcours::class);
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.
