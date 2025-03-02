@@ -67,7 +67,7 @@
                     <select name="roleName" id="roleId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                         <option value="">Sélectionner les role</option>
                         @foreach($roles as $role)
-                            <option value="{{ $role->id }}" {{ old('roleId') == $role->id ? 'selected' : '' }}>
+                            <option value="{{ $role->name }}" {{ old('  ') == $role->id ? 'selected' : '' }}>
                                 {{ $role->nom }}
                             </option>
                         @endforeach
@@ -142,7 +142,7 @@
     </div>
 </div>
 
-<script>
+{{-- <script>
     function previewImage() {
         var preview = document.getElementById('preview');
         var file = document.getElementById('photo_profile').files[0];
@@ -158,7 +158,7 @@
             preview.src = "{{ asset('images/default-avatar.png') }}";
         }
     }
-</script>
+</script> --}}
 @endsection
 
 

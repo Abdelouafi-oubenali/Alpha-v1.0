@@ -37,10 +37,10 @@ class UserController extends Controller
     {
         $entreprise_id = '1';
 
-        User::create([
+        $user = User::create([
             'name' => $request->nom,
             'email' => $request->email,
-            'role_id' => $request->roleName,
+            'role' => $request->roleName,
             'posIdt' => $request->PostName,
             'password' => bcrypt($request->password), 
             'photo_profil' => $request->photo_profil,
@@ -49,6 +49,7 @@ class UserController extends Controller
 
             // 'entreprise_id' => 1, 
         ]);
+        $user->assignRole($request->roleName);
         return redirect('users')->with('success', 'departement ajoutée avec succès !');
 
     }
@@ -80,7 +81,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreUserRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
         $user->update([
@@ -88,7 +89,7 @@ class UserController extends Controller
             'email' => $request->email,
             // 'email_verified_at' => $request->email_confirmation,
             'password' => bcrypt($request->password), 
-            'role_id' => $request->roleName,
+            'role' => $request->roleName,
             'posIdt' => $request->PostName,
             'photo_profil' => $request->photo_profil,
             'téléphone' => $request->téléphone,

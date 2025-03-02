@@ -20,10 +20,10 @@ class StoreUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'name' => 'required|string|max:255',
+            'nom' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'role_id' => 'required|integer|exists:roles,id',
-            'posIdt' => 'required|integer|exists:positions,id',
+            // 'role_id' => 'required|integer|exists:roles,id',
+            // 'posIdt' => 'required|integer|exists:positions,id',
             'password' => 'required|string|min:8|confirmed',
             'photo_profil' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'téléphone' => 'nullable|string|min:10|max:20',
