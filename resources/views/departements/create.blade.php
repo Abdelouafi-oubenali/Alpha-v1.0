@@ -4,6 +4,7 @@
 <div class="max-w-3xl mx-auto px-6 py-10 bg-white rounded-lg shadow-md">
     <h1 class="text-4xl font-semibold text-gray-800 mb-6">Create New Department</h1>
 
+    <!-- Affichage des erreurs générales -->
     @if ($errors->any())
         <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6">
             <p class="font-bold">Error(s):</p>
@@ -22,21 +23,27 @@
             <!-- Department Name -->
             <div>
                 <label for="nom" class="block text-gray-700 font-medium mb-2">Department Name</label>
-                <input type="text" id="nom" name="nom" value="{{ old('nom') }}" required 
+                <input type="text" id="nom" name="nom" value="{{ old('nom') }}"  
                     class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Enter department name">
+                @error('nom')
+                    <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                @enderror
             </div>
 
             <!-- Responsible User -->
             <div>
                 <label for="responsable_id" class="block text-gray-700 font-medium mb-2">Responsible User</label>
-                <select id="responsable_id" name="responsable_id" required 
+                <select id="responsable_id" name="responsable_id"  
                     class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option disabled selected>Select a responsible user</option>
                     @foreach($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        <option value="{{ $user->id }}" {{ old('responsable_id') == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
                     @endforeach
                 </select>
+                @error('responsable_id')
+                    <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                @enderror
             </div>
 
             <!-- Submit Button -->

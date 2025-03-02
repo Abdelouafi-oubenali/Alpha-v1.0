@@ -3,8 +3,8 @@
 @section('content')
 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="mb-8">
-        <h2 class="text-2xl font-bold text-gray-800">Modifier l'utilisateur</h2>
-        <p class="mt-2 text-sm text-gray-600">Veuillez modifier les champs nécessaires pour mettre à jour le compte utilisateur.</p>
+        <h2 class="text-2xl font-bold text-gray-800">Mettre à jour l'utilisateur</h2>
+        <p class="mt-2 text-sm text-gray-600">Veuillez remplir tous les champs requis pour mettre à jour le compte utilisateur.</p>
     </div>
 
     <div class="bg-white shadow-md rounded-lg overflow-hidden">
@@ -16,7 +16,7 @@
                 <!-- Nom -->
                 <div class="col-span-2 md:col-span-1">
                     <label for="name" class="block text-sm font-medium text-gray-700">Nom complet</label>
-                    <input type="text" name="name" id="name" value="{{ old('name', $user->name) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
+                    <input type="text" name="nom" id="name" value="{{ old('name', $user->name) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
                     @error('name')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
@@ -29,6 +29,12 @@
                     @error('email')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
+                </div>
+
+                <!-- Email Vérification -->
+                <div class="col-span-2 md:col-span-1">
+                    <label for="email_confirmation" class="block text-sm font-medium text-gray-700">Confirmation email</label>
+                    <input type="email" name="email_confirmation" id="email_confirmation" value="{{ old('email_confirmation', $user->email) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
                 </div>
 
                 <!-- Téléphone -->
@@ -44,7 +50,6 @@
                 <div class="col-span-2 md:col-span-1">
                     <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
                     <input type="password" name="password" id="password" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                    <p class="mt-1 text-xs text-gray-500">Laissez vide pour ne pas modifier le mot de passe.</p>
                     @error('password')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
@@ -54,6 +59,40 @@
                 <div class="col-span-2 md:col-span-1">
                     <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirmer le mot de passe</label>
                     <input type="password" name="password_confirmation" id="password_confirmation" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                </div>
+
+                <!-- Role ID -->
+                <div class="col-span-2 md:col-span-1">
+                    <label for="roleId" class="block text-sm font-medium text-gray-700">Rôle</label>
+                    <select name="roleName" id="roleId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-black bg-white">
+                        {{-- <option value="">Sélectionner un rôle</option> --}}
+                        @foreach($roles as $role)
+                            <option class="block text-sm" value="{{ $role->id }}" {{ old('roleId', $user->role_id) == $role->id ? 'selected' : '' }}>
+                                {{ $role->nom }}
+                            </option>
+                        @endforeach
+                    </select>
+                    
+                    
+                    @error('roleId')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!-- Post ID -->
+                <div class="col-span-2 md:col-span-1">
+                    <label for="postId" class="block text-sm font-medium text-gray-700">Poste</label>
+                    <select name="PostName" id="postId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        <option value="">Sélectionner un poste</option>
+                        @foreach($posts as $post)
+                            <option value="{{ $post->id }}" {{ old('postId', $user->post_id) == $post->id ? 'selected' : '' }}>
+                                {{ $post->nom }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('postId')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <!-- Type de contrat -->

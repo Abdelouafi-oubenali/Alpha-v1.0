@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\models\User;
 use App\models\Role;
 use App\models\Post;
-
+use App\Http\Requests\StoreUserRequest;
 
 
 class UserController extends Controller
@@ -33,7 +33,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest  $request)
     {
         $entreprise_id = '1';
 
@@ -59,6 +59,10 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
+        $user = User::findOrFail($id);
+        $roles = Role::all();
+        $posts = Post::all();
+        return view('users.show',compact('user','roles','posts'));
         
     }
 
@@ -67,21 +71,25 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
+        $roles = Role::all();
+        $posts = Post::all();
         $user = User::findOrFail($id);
-        return view('users.edit',compact('user'));
+        return view('users.edit',compact('user','roles','posts'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(StoreUserRequest $request, $id)
     {
         $user = User::findOrFail($id);
         $user->update([
-            'name' => $request->name,
+            'name' => $request->nom,
             'email' => $request->email,
             // 'email_verified_at' => $request->email_confirmation,
             'password' => bcrypt($request->password), 
+            'role_id' => $request->roleName,
+            'posIdt' => $request->PostName,
             'photo_profil' => $request->photo_profil,
             'téléphone' => $request->téléphone,
             'entreprise_id' => 1,

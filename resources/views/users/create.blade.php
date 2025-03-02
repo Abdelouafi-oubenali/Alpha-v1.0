@@ -16,7 +16,7 @@
                 <div class="col-span-2 md:col-span-1">
                     <label for="name" class="block text-sm font-medium text-gray-700">Nom complet</label>
                     
-                    <input type="text" name="nom" id="name" value="{{ old('name') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
+                    <input type="text" name="nom" id="name" value="{{ old('name') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" >
                     @error('name')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
@@ -25,7 +25,7 @@
                 <!-- Email -->
                 <div class="col-span-2 md:col-span-1">
                     <label for="email" class="block text-sm font-medium text-gray-700">Adresse email</label>
-                    <input type="email" name="email" id="email" value="{{ old('email') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
+                    <input type="email" name="email" id="email" value="{{ old('email') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" >
                     @error('email')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
@@ -34,7 +34,7 @@
                 <!-- Email Vérification -->
                 <div class="col-span-2 md:col-span-1">
                     <label for="email_confirmation" class="block text-sm font-medium text-gray-700">Confirmation email</label>
-                    <input type="email" name="email_confirmation" id="email_confirmation" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
+                    <input type="email" name="email_confirmation" id="email_confirmation" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" >
                 </div>
 
                 <!-- Téléphone -->
@@ -49,7 +49,7 @@
                 <!-- Mot de passe -->
                 <div class="col-span-2 md:col-span-1">
                     <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
-                    <input type="password" name="password" id="password" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
+                    <input type="password" name="password" id="password" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" >
                     @error('password')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
@@ -58,7 +58,7 @@
                 <!-- Confirmation mot de passe -->
                 <div class="col-span-2 md:col-span-1">
                     <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirmer le mot de passe</label>
-                    <input type="password" name="password_confirmation" id="password_confirmation" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" required>
+                    <input type="password" name="password_confirmation" id="password_confirmation" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" >
                 </div>
 
                 <!-- department ID -->
@@ -79,8 +79,8 @@
 
                    <div class="col-span-2 md:col-span-1">
                     <label for="postId" class="block text-sm font-medium text-gray-700">post</label>
-                    <select name="PostName" id="postId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                        <option value="postId">Sélectionner post</option>
+                    <select name="PostName" id="postId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" style="color: black">
+                        <option value="postId" style="color: black">Sélectionner post</option>
                         @foreach($posts as $post)
                             <option value="{{ $post->id }}" {{ old('postId') == $post->id ? 'selected' : '' }}>
                                 {{ $post->nom }}
