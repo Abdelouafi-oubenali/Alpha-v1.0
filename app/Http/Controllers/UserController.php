@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\User;
-use App\models\Role;
-use App\models\Post;
-use App\Http\Requests\StoreUserRequest;
+use App\Models\User;
+use App\Models\Role;
+use App\Models\Post;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UtilisateurCreeMail;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 
 class UserController extends Controller
@@ -33,25 +36,24 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserRequest  $request)
+    public function store(Request $request)
     {
-        $entreprise_id = '1';
+        $password = Str::random(10); 
 
         $user = User::create([
             'name' => $request->nom,
             'email' => $request->email,
             'role' => $request->roleName,
             'posIdt' => $request->PostName,
-            'password' => bcrypt($request->password), 
-            'photo_profil' => $request->photo_profil,
+            'password' => Hash::make($password),
             'téléphone' => $request->téléphone,
-            'entreprise_id' => $entreprise_id,
-
-            // 'entreprise_id' => 1, 
+            'entreprise_id' => 1,
         ]);
-        $user->assignRole($request->roleName);
-        return redirect('users')->with('success', 'departement ajoutée avec succès !');
 
+        $user->assignRole($request->roleName);
+        Mail::to($user->email)->send(new UtilisateurCreeMail($user, $password));
+
+        return redirect('users')->with('success', 'Utilisateur ajouté et email envoyé !');
     }
     
 
