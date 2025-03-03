@@ -31,6 +31,13 @@
                             <div class="flex-1 flex flex-col overflow-y-auto">
                                 <nav class="flex-1 px-2 py-4 space-y-1">
                 
+                                    <a href="/profile" class="text-gray-300 hover:bg-blue-800 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                        <svg class="mr-3 h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14c4.418 0 8 3.582 8 8s-3.582 8-8 8-8-3.582-8-8 3.582-8 8-8zM12 12c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6z"/>
+                                        </svg>
+                                        Profil
+                                    </a>
+                                    
                                     <!-- Tableau de bord (accessible à tous) -->
                                     <a href="/" class="bg-blue-800 text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                                         <svg class="mr-3 h-6 w-6 text-blue-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -38,6 +45,14 @@
                                         </svg>
                                         Tableau de bord
                                     </a>
+
+                                    <a href="/conges" class="text-gray-300 hover:bg-blue-800 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                        <svg class="mr-3 h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M6 4h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2z"/>
+                                        </svg>
+                                        Demande de congé
+                                    </a>
+                                    
                 
                                     <!-- Liens accessibles uniquement aux Admins -->
                                     @role('Admin')

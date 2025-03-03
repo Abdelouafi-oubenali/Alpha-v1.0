@@ -13,7 +13,7 @@ class ParcourController extends Controller
         return view('parcours.index', compact('parcours'));
     }
     
-
+    
     public function create()
     {
         return view('parcours.create');
