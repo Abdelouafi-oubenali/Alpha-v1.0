@@ -15,6 +15,7 @@ Route::resource('formasion', FormationControler::class);
 Route::resource('posts',PostController::class);
 Route::resource('parcours',ParcourController::class);
 
+Route::view('/test', 'employe.formulaire-conge');
 
 
 // Route::post('departements', [DepartmentController::class, 'store'])->name('departements.store');
