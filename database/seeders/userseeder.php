@@ -22,10 +22,11 @@ class userseeder extends Seeder
         // $admin->assignRole('Admin');
 
         $admin = User::create([
-            'name' => 'kara',
-            'email' => 'kara@gmail.com',
+            'name' => 'abdelouafi',
+            'email' => 'abdelouafi@gmail.com',
             'password' => '123456789',
-            'entreprise_id' => '1'
+            'entreprise_id' => '1',
+            'role' => 'admin'
         ]);
         $admin->assignRole('Admin');
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Formation;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreFormationRequest;
 
 class FormationControler extends Controller
 {
@@ -27,7 +28,7 @@ class FormationControler extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreFormationRequest $request)
     {
         Formation::create([
             'titre' => $request->titre,
@@ -59,7 +60,7 @@ class FormationControler extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreFormationRequest $request, string $id)
     {
         $formations = Formation::findOrFail($id);
         $formations->update([

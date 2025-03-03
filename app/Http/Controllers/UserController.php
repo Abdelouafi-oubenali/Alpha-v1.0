@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\User;
-use App\models\Role;
-use App\models\Post;
-
+use App\Models\User;
+use App\Models\Role;
+use App\Models\Post;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UtilisateurCreeMail;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 
 class UserController extends Controller
@@ -35,22 +38,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $entreprise_id = '1';
+        $password = Str::random(10); 
 
-        User::create([
+        $user = User::create([
             'name' => $request->nom,
             'email' => $request->email,
-            'roleId' => $request->roleName,
+            'role' => $request->roleName,
             'posIdt' => $request->PostName,
-            'password' => bcrypt($request->password), 
-            'photo_profil' => $request->photo_profil,
+            'password' => Hash::make($password),
             'téléphone' => $request->téléphone,
-            'entreprise_id' => $entreprise_id,
-
-            // 'entreprise_id' => 1, 
+            'entreprise_id' => 1,
         ]);
-        return redirect('users')->with('success', 'departement ajoutée avec succès !');
 
+        $user->assignRole($request->roleName);
+        Mail::to($user->email)->send(new UtilisateurCreeMail($user, $password));
+
+        return redirect('users')->with('success', 'Utilisateur ajouté et email envoyé !');
     }
     
 
@@ -59,6 +62,10 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
+        $user = User::findOrFail($id);
+        $roles = Role::all();
+        $posts = Post::all();
+        return view('users.show',compact('user','roles','posts'));
         
     }
 
@@ -67,8 +74,10 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
+        $roles = Role::all();
+        $posts = Post::all();
         $user = User::findOrFail($id);
-        return view('users.edit',compact('user'));
+        return view('users.edit',compact('user','roles','posts'));
     }
 
     /**
@@ -78,10 +87,12 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->update([
-            'name' => $request->name,
+            'name' => $request->nom,
             'email' => $request->email,
             // 'email_verified_at' => $request->email_confirmation,
             'password' => bcrypt($request->password), 
+            'role' => $request->roleName,
+            'posIdt' => $request->PostName,
             'photo_profil' => $request->photo_profil,
             'téléphone' => $request->téléphone,
             'entreprise_id' => 1,

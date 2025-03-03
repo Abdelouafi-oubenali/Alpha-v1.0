@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Departement;
 use Illuminate\Support\Facades\Auth;
 use App\models\User;
+use App\Http\Requests\StoreDepartementRequest;
+
 class DepartmentController extends Controller
 {
     /**
@@ -30,7 +32,7 @@ class DepartmentController extends Controller
      * Store a newly created resource in storage.
      */
     
-    public function store(Request $request)
+    public function store(StoreDepartementRequest $request)
     {
         $userId = Auth::id();
         $entreprise_id = '1';
@@ -66,7 +68,7 @@ class DepartmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(StoreDepartementRequest $request, $id)
     {
         $department = Departement::findOrFail($id);
     
