@@ -9,6 +9,16 @@
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto px-4 py-8 max-w-2xl">
+        @if ($errors->any())
+        <div class="alert alert-danger" style="background-color: red; color: white; padding: 10px;">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    
         <div class="bg-white rounded-lg shadow-md p-6">
             <h1 class="text-2xl font-bold text-center text-blue-600 mb-6">Demande de congé</h1>
             
@@ -61,8 +71,9 @@
                         </div>
                         <div>
                             <label for="jours" class="block text-sm font-medium text-gray-700 mb-1">Nombre de jours</label>
-                            <input type="number" id="jours" name="jours" min="0.5" step="0.5"  
+                            <input type="number" value="{{ $conges }}" id="jours" name="jours" min="0.5" step="0.5"  
                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                   
                         </div>
                     </div>
                 </div>
@@ -116,7 +127,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Définir la date minimale pour la date de début (7 jours après la date actuelle)
             var today = new Date();
             var sevenDaysFromNow = new Date();
             sevenDaysFromNow.setDate(today.getDate() + 7);
@@ -124,22 +134,18 @@
 
             document.getElementById('date_debut').setAttribute('min', minDate);
 
-            // Ajouter une validation sur la date de fin
             document.getElementById('date_debut').addEventListener('change', function () {
                 var startDate = new Date(this.value);
                 var endDateInput = document.getElementById('date_fin');
                 
-                // Mettre à jour la date minimale pour "date de fin"
                 if (this.value) {
                     var minEndDate = new Date(startDate);
                     minEndDate.setDate(startDate.getDate() + 1); // La date de fin doit être après la date de début
 
-                    // Appliquer la nouvelle date minimale pour "date de fin"
                     endDateInput.setAttribute('min', minEndDate.toISOString().split('T')[0]);
                 }
             });
 
-            // Validation de la date de fin (lorsque l'utilisateur sélectionne une date)
             document.getElementById('date_fin').addEventListener('change', function () {
                 var startDate = new Date(document.getElementById('date_debut').value);
                 var endDate = new Date(this.value);
