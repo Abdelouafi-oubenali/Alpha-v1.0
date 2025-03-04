@@ -48,8 +48,9 @@
             @csrf
             @method('PUT')
             <input type="hidden" name="statut" value="en attente">
-            <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded">En attente</button>
-          </form>
+            <button class="bg-blue-600 hover:bg-blue-600 text-white px-3 py-1 rounded">View</button>
+        </form>
+        
         </div>
       </div>
 
