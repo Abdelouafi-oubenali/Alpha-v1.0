@@ -29,7 +29,7 @@ class CongesController extends Controller
 
         // Créer le congé
         Conges::create([
-            'employee_id' => $employee_id,
+            'user_id' => $employee_id,
             'date_debut' => $request->date_debut,
             'date_fin' => $request->date_fin,
             'type_conge' => $request->type_conge,

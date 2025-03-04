@@ -12,7 +12,7 @@ class Conges extends Model
      protected $table = 'conges';
 
      protected $fillable = [
-         'employee_id',
+         'user_id',
          'date_debut',
          'date_fin',
          'type_conge',
@@ -20,9 +20,10 @@ class Conges extends Model
      ];
 
     // Relation : un congé appartient à un employé
-    public function employes()
+    public function employe()
     {
-        return $this->belongsTo(Employe::class);
+        return $this->belongsTo(User::class,'user_id');
+ 
     }
 }
 

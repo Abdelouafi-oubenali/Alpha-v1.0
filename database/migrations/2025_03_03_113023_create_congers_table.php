@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('conges', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('employee_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->date('date_debut');
             $table->date('date_fin');
             $table->enum('type_conge', ['conge_paye', 'rtt', 'sans_solde', 'maladie', 'maternite', 'autre']);
@@ -26,7 +26,7 @@ return new class extends Migration
      * Reverse the migrations.
      */
 
-     
+
     public function down(): void
     {
         Schema::dropIfExists('congers');

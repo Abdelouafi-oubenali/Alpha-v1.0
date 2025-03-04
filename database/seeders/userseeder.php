@@ -13,21 +13,23 @@ class userseeder extends Seeder
      */
     public function run(): void
     {
-        // $admin = User::create([
-        //     'name' => 'abdelouafi',
-        //     'email' => 'abdelouuafioubenali@gmail.com',
-        //     'password' => 'kizaru2004',
-        //     'entreprise_id' => '1'
-        // ]);
-        // $admin->assignRole('Admin');
-
         $admin = User::create([
             'name' => 'abdelouafi',
-            'email' => 'abdelouafi@gmail.com',
-            'password' => '123456789',
+            'email' => 'abdelouuafioubenali@gmail.com',
+            'password' => 'kizaru2004',
             'entreprise_id' => '1',
             'role' => 'admin'
+
         ]);
         $admin->assignRole('Admin');
+
+        // $admin = User::create([
+        //     'name' => 'abdelouafi',
+        //     'email' => 'abdelouafi@gmail.com',
+        //     'password' => '123456789',
+        //     'entreprise_id' => '1',
+        //     'role' => 'admin'
+        // ]);
+        // $admin->assignRole('Admin');
     }
 }

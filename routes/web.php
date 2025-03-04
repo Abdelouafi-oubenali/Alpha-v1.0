@@ -7,6 +7,9 @@ use App\Http\Controllers\FormationControler;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ParcourController;
 use App\Http\Controllers\CongesController;
+use App\Http\Controllers\MailController;
+
+
 
 
 Route::view('/', 'welcome');
@@ -17,6 +20,9 @@ Route::resource('posts',PostController::class);
 Route::resource('parcours',ParcourController::class);
 
 Route::resource('conges', CongesController::class);
+
+Route::resource('mail', MailController::class);
+
 
 
 // Route::post('departements', [DepartmentController::class, 'store'])->name('departements.store');
