@@ -71,7 +71,7 @@ class CongesController extends Controller
             'commentaire' => $request->commentaire,
         ]);
 
-        return redirect('conges')->with('success', 'departement ajoutée avec succès !');
+        return redirect('attonte')->with('success', 'departement ajoutée avec succès !');
 
     }
 }

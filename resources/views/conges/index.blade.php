@@ -65,7 +65,7 @@
         </div>
 
         <div class="bg-gray-100 p-4 text-center text-sm text-gray-600">
-            Votre solde de congés actuel : <strong>{{ $conges }} jour</strong>
+            Votre solde de congés actuel : <strong>{{ $conges }} jo</strong>
         </div>
     </div>
 </body>
