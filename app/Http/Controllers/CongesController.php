@@ -72,7 +72,6 @@ class CongesController extends Controller
         ]);
 
         return redirect('attonte')->with('success', 'departement ajoutée avec succès !');
-
     }
 }
 

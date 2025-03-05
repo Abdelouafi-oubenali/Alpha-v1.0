@@ -31,6 +31,10 @@ Route::view('/attonte', 'conges.attonte');
 // Route::put('departments/{department}', [DepartmentController::class, 'update'])->name('departements.update');
 
 
+Route::put('/demandes/{id}/accepter', [MailController::class, 'accepter'])->name('demandes.accepter');
+Route::put('/demandes/{id}/refuser', [MailController::class, 'refuser'])->name('demandes.refuser');
+Route::get('/demandes/{id}/view', [MailController::class, 'view'])->name('demandes.view');
+
 
 
 Route::view('dashboard', 'dashboard')

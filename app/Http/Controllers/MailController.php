@@ -2,67 +2,84 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mail;
-use App\Http\Requests\StoreMailRequest;
-use App\Http\Requests\UpdateMailRequest;
 use App\Models\Conges;
+use App\Mail\DemandeRefuseeMail;
+use App\Mail\DemandeAccepteeMail;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail; 
 
 class MailController extends Controller
 {
+    protected $accepteTotal = 0; 
+
     /**
-     * Display a listing of the resource.
+     * Afficher la liste des demandes de congé.
      */
     public function index()
     {
+        // Charger toutes les demandes de congé avec les informations des employés
         $congers = Conges::with('employe')->get(); 
         return view('mail.index', compact('congers'));
     }
-
+    
     /**
-     * Show the form for creating a new resource.
+     * Accepter une demande de congé
      */
-    public function create()
+    public function accepter($id)
     {
-        //
+        $demande = Conges::findOrFail($id);
+        $user = Auth::user(); 
+    
+        if ($user->role == 'admin') {
+            $demande->admin_approved = true;
+        } elseif ($user->role == 'manager') {
+            $demande->manager_approved = true;
+        }
+        
+        $nomEmploye = $demande->employe->name;
+        $dateDebut = $demande->date_debut; 
+        $dateFin = $demande->date_fin;  
+    
+        $demande->save();    
+    
+        if ($demande->admin_approved && $demande->manager_approved) {
+            $demande->update(['statut' => 'accepte']);            
+            
+            Mail::to($demande->employe->email)->send(new DemandeAccepteeMail($nomEmploye, $dateDebut, $dateFin));
+        }
+    
+        return redirect()->back()->with('success', 'Demande acceptée avec succès.');
     }
+    
 
     /**
-     * Store a newly created resource in storage.
+     * Refuser une demande de congé
      */
-    public function store(StoreMailRequest $request)
-    {
-        //
-    }
+    public function refuser($id)
+{
+    $demande = Conges::findOrFail($id);
+
+    $user = Auth::user(); 
+    $nomEmploye = $demande->employe->name;
+    $dateDebut = $demande->date_debut; 
+    $dateFin = $demande->date_fin;  
+
+    $demande->update(['statut' => 'refuse']);
+
+    Mail::to($demande->employe->email)->send(new DemandeRefuseeMail($nomEmploye, $dateDebut, $dateFin));
+
+    return redirect()->back()->with('error', 'Demande refusée.');
+}
+
 
     /**
-     * Display the specified resource.
+     * Afficher une demande de congé spécifique
      */
-    public function show(Mail $mail)
+    public function view($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Mail $mail)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateMailRequest $request, Mail $mail)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Mail $mail)
-    {
-        //
+        $demande = Conges::findOrFail($id);
+        
+        return view('demandes.view', compact('demande'));
     }
 }

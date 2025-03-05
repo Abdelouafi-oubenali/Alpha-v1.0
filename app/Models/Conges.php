@@ -17,6 +17,7 @@ class Conges extends Model
          'date_fin',
          'type_conge',
          'commentaire',
+         'statut'
      ];
 
     // Relation : un congé appartient à un employé
