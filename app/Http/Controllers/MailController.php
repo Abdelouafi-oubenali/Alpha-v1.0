@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Conges;
+use App\Models\CongerJour;
 use App\Mail\DemandeRefuseeMail;
 use App\Mail\DemandeAccepteeMail;
 use App\Http\Controllers\Controller;
@@ -11,8 +13,6 @@ use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
 {
-    protected $accepteTotal = 0; 
-
     /**
      * Afficher la liste des demandes de congé.
      */
@@ -30,10 +30,10 @@ class MailController extends Controller
     {
         $demande = Conges::findOrFail($id);
         $user = Auth::user(); 
-    
-        if ($user->role == 'admin') {
+         
+        if ($user->role == 'RH') {
             $demande->admin_approved = true;
-        } elseif ($user->role == 'manager') {
+        } elseif ($user->role == 'Manager') {
             $demande->manager_approved = true;
         }
         
@@ -63,7 +63,20 @@ class MailController extends Controller
     $user = Auth::user(); 
     $nomEmploye = $demande->employe->name;
     $dateDebut = $demande->date_debut; 
+
+    $dateDebut = Carbon::parse($demande->date_debut);
+    $dateFin = Carbon::parse($demande->date_fin);
+    $nombreJours = $dateDebut->diffInDays($dateFin);
+    
     $dateFin = $demande->date_fin;  
+
+    $congerJour = CongerJour::where('user_id', $demande->user_id)->first();
+
+    if ($congerJour) {
+        $congerJour->update([
+            'nombre_jours' => $congerJour->nombre_jours + $nombreJours
+        ]);
+    }
 
     $demande->update(['statut' => 'refuse']);
 
