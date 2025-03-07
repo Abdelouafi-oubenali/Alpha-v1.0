@@ -48,7 +48,6 @@
           </form>
 
           <!-- Bouton View -->
-          <a href="{{ route('demandes.view', $demande->id) }}" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded">View</a>
         </div>
       </div>
 

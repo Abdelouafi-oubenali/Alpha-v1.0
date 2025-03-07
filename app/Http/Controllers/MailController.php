@@ -40,7 +40,6 @@ class MailController extends Controller
         $nomEmploye = $demande->employe->name;
         $dateDebut = $demande->date_debut; 
         $dateFin = $demande->date_fin;  
-    
         $demande->save();    
     
         if ($demande->admin_approved && $demande->manager_approved) {

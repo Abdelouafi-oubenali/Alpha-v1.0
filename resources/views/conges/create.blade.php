@@ -29,18 +29,8 @@
                     <h2 class="text-lg font-semibold border-b border-gray-300 pb-2 mb-4">Informations personnelles</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label for="nom" class="block text-sm font-medium text-gray-700 mb-1">Nom et prénom</label>
-                            <input type="text" id="nom" name="nom"  
-                                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        </div>
-                        <div>
                             <label for="service" class="block text-sm font-medium text-gray-700 mb-1">Service</label>
                             <input type="text" id="service" name="service"  
-                                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        </div>
-                        <div>
-                            <label for="matricule" class="block text-sm font-medium text-gray-700 mb-1">Matricule</label>
-                            <input type="text" id="matricule" name="matricule"  
                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
                         <div>
@@ -64,11 +54,7 @@
                             <input type="date" id="date_fin" name="date_fin"  
                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
-                        <div>
-                            <label for="date_reprise" class="block text-sm font-medium text-gray-700 mb-1">Date de reprise</label>
-                            <input type="date" id="date_reprise" name="date_reprise"  
-                                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        </div>
+                    
                         <div>
                             <label for="jours" class="block text-sm font-medium text-gray-700 mb-1">Nombre de jours</label>
                             <input type="number" value="{{ $conges }}" id="jours" name="jours" min="0.5" step="0.5"  

@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Parcours;
 use App\Models\Formation;
+use App\Models\CongerJour;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Mail\UtilisateurCreeMail;
-use App\Models\CongerJour;
-use App\Models\Parcours;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Carbon\Carbon;
+use App\Http\Requests\StoreUserRequest;
 
 
 class UserController extends Controller
@@ -40,19 +41,8 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        // Validation des données
-        // $request->validate([
-        //     'nom' => 'required|string|max:255',
-        //     'email' => 'required|email|unique:users,email',
-        //     'roleName' => 'required|string',
-        //     'PostName' => 'required|string',
-        //     'type_contrat' => 'required|string',
-        //     'téléphone' => 'required|string',
-        //     'photo_profile' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validation d'image
-        // ]);
-    
         $password = Str::random(10);
     
         // Traitement de l'image
@@ -90,7 +80,7 @@ class UserController extends Controller
         ]);
     
         $user->assignRole($request->roleName);
-        // Mail::to($user->email)->send(new UtilisateurCreeMail($user, $password));
+        Mail::to($user->email)->send(new UtilisateurCreeMail($user, $password));
     
         return redirect('users')->with('success', 'Utilisateur ajouté et email envoyé !');
     }
