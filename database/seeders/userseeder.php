@@ -18,18 +18,37 @@ class userseeder extends Seeder
             'email' => 'abdelouuafioubenali@gmail.com',
             'password' => 'kizaru2004',
             'entreprise_id' => '1',
-            'role' => 'admin'
+            'role' => 'Admin'
 
         ]);
         $admin->assignRole('Admin');
 
-        // $admin = User::create([
-        //     'name' => 'abdelouafi',
-        //     'email' => 'abdelouafi@gmail.com',
-        //     'password' => '123456789',
-        //     'entreprise_id' => '1',
-        //     'role' => 'admin'
-        // ]);
-        // $admin->assignRole('Admin');
+        $Employe = User::create([
+            'name' => 'Amina',
+            'email' => 'amina@gmail.com',
+            'password' => '123456789',
+            'role' => 'Employe',
+            'entreprise_id' => '1',
+        ]);
+        $Employe->assignRole('Employe');
+
+
+        $Manager = User::create([
+            'name' => 'ali yara',
+            'email' => 'aliyara@gmail.com',
+            'password' => '123456789',
+            'role' => 'Manager',
+            'entreprise_id' => '1',
+        ]);
+        $Manager->assignRole('Manager');
+
+        $RH = User::create([
+            'name' => 'kizaru',
+            'email' => 'kizaru@gmail.com',
+            'password' => '123456789',
+            'role' => 'Manager',
+            'entreprise_id' => '1',
+        ]);
+        $RH->assignRole('RH');
     }
 }

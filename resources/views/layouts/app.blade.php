@@ -22,7 +22,7 @@
             <!-- Sidebar and Main Content -->
             <div class="flex">
                 <!-- Sidebar -->
-                <div class="hidden md:flex md:flex-shrink-0" style="height:100vh">
+                <div class="hidden md:flex md:flex-shrink-0 fixed " style="height:100vh">
                     <div class="flex flex-col w-64">
                         <div class="flex flex-col h-0 flex-1 bg-blue-900">
                             <div class="flex items-center h-16 flex-shrink-0 px-4 bg-blue-800">
@@ -45,14 +45,14 @@
                                         </svg>
                                         Tableau de bord
                                     </a>
-
+                                    @role('Employe|Manager')
                                     <a href="/conges" class="text-gray-300 hover:bg-blue-800 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                                         <svg class="mr-3 h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M6 4h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2z"/>
                                         </svg>
                                         Demande de congé
                                     </a>
-                                    
+                                    @endrole
                 
                                     <!-- Liens accessibles uniquement aux Admins -->
                                     @role('Admin')
@@ -67,29 +67,32 @@
                                     @endrole
                 
                                     <!-- Liens accessibles aux Admins et Managers -->
-                                    @hasanyrole('Admin|Manager')
+                                    @hasanyrole('Admin|Manager|RH')
                                         <a href="/users" class="text-gray-300 hover:bg-blue-800 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                                             <svg class="mr-3 h-6 w-6 text-gray-400 group-hover:text-blue-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                                             </svg>
                                             Gérer les Employés
                                         </a>
-                                        
+                                    @endhasanyrole
+                                    
+                                    @role('Admin|RH')
                                         <a href="/formasion" class="text-gray-300 hover:bg-blue-800 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                                             <svg class="mr-3 h-6 w-6 text-gray-400 group-hover:text-blue-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                                             </svg>
                                             Formations
                                         </a>
-                                    @endhasanyrole
-                
+                                    @endrole                
                                     <!-- Liens accessibles à tous (Admin, Manager, Employé) -->
+                                    @role('manager|RH')
                                     <a href="/posts" class="text-gray-300 hover:bg-blue-800 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                                         <svg class="mr-3 h-6 w-6 text-gray-400 group-hover:text-blue-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                                         </svg>
                                         Posts
                                     </a>
+                                    @endrole
                 
                                     <!-- Paramètres (accessible uniquement aux Admins et Managers) -->
                                     @can('manage settings')

@@ -11,8 +11,8 @@ class Formation extends Model
         'titre', 'description', 'date_debut', 'date_fin'
     ];
 
-    public function employe(): BelongsTo
+    public function users()
     {
-        return $this->belongsTo(User::class, 'employe_id');
+        return $this->belongsToMany(User::class, 'formation_user');
     }
 }
