@@ -8,6 +8,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ParcourController;
 use App\Http\Controllers\CongesController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\ProfileController;
 
 
 
@@ -57,16 +58,14 @@ Route::post('/user/formation', [UserController::class, 'assignFormation'])->name
 // Route::post('/user/formation/{formationId}', [UserController::class, 'assignFormation'])->name('assignFormation');
 
 
-
-
-
+Route::resource('emploiyee/profile', ProfileController::class);
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
+    Route::view('profile', 'profile')
+        ->middleware(['auth'])
+        ->name('profile');
 
 require __DIR__.'/auth.php';
