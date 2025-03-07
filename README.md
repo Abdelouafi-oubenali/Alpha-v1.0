@@ -1,66 +1,149 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Projet de Gestion de entrepris alpha
 
-## About Laravel
+Ce projet est une application de gestion qui permet de gérer plusieurs aspects d'une organisation, notamment les appartements, les utilisateurs, les cours, les congés, les postes, les rôles, et les emails.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Fonctionnalités Principales
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 1. Gestion des Appartements
+- **Ajouter un appartement** : Permet d'ajouter un nouvel appartement à la base de données.
+- **Modifier un appartement** : Permet de modifier les informations d'un appartement existant.
+- **Supprimer un appartement** : Permet de supprimer un appartement de la base de données.
+- **Lister les appartements** : Affiche la liste de tous les appartements disponibles.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 2. Gestion des Utilisateurs
+- **Ajouter un utilisateur** : Permet d'ajouter un nouvel utilisateur.
+- **Modifier un utilisateur** : Permet de modifier les informations d'un utilisateur existant.
+- **Supprimer un utilisateur** : Permet de supprimer un utilisateur de la base de données.
+- **Lister les utilisateurs** : Affiche la liste de tous les utilisateurs enregistrés.
+- **suiver le cariare de le user**
 
-## Learning Laravel
+### 3. Gestion des Cours
+- **Ajouter un cours** : Permet d'ajouter un nouveau cours.
+- **Modifier un cours** : Permet de modifier les informations d'un cours existant.
+- **Supprimer un cours** : Permet de supprimer un cours de la base de données.
+- **Lister les cours** : Affiche la liste de tous les cours disponibles.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 4. Gestion des Congés
+- **Demander un congé** : Permet à un utilisateur de demander un congé.
+- **Approuver/Refuser un congé** : Permet à un administrateur d'approuver ou de refuser une demande de congé.
+- **Lister les congés** : Affiche la liste de tous les congés demandés et leur statut.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 5. Gestion des Postes
+- **Ajouter un poste** : Permet d'ajouter un nouveau poste.
+- **Modifier un poste** : Permet de modifier les informations d'un poste existant.
+- **Supprimer un poste** : Permet de supprimer un poste de la base de données.
+- **Lister les postes** : Affiche la liste de tous les postes disponibles.
+- **Assigner une formation aux employés** : 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 6. Gestion des Rôles
+- **Ajouter un rôle** : Permet d'ajouter un nouveau rôle.
+- **Modifier un rôle** : Permet de modifier les informations d'un rôle existant.
+- **Supprimer un rôle** : Permet de supprimer un rôle de la base de données.
+- **Lister les rôles** : Affiche la liste de tous les rôles disponibles.
 
-## Laravel Sponsors
+### 7. Gestion des Emails
+- **Envoyer un email** : Permet d'envoyer un email à un ou plusieurs utilisateurs.
+- **Lister les emails envoyés** : Affiche la liste de tous les emails envoyés.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Installation
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
+## seeder 
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Entreprise seeder 
+  public function run(): void
+    {
+        Entreprise::create([
+            'name' => 'alpha',
+            'email' => 'aloha@gmail.com',
+            'phone_number' => '0616126869',
+            'adresse' => 'kitra siditaibi'
+        ]);
+    }
+### role et permision seeder 
+ public function run()
+    {
+        // Création des rôles
+        $admin = Role::create(['name' => 'Admin']);
+        $manager = Role::create(['name' => 'Manager']);
+        $employe = Role::create(['name' => 'Employé']);
 
-## Code of Conduct
+        // Création des permissions
+        $permissions = [
+            'ajouter employe',
+            'modifier employe',
+            'supprimer employe',
+            'voir employes',
+        ];
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+        foreach ($permissions as $permission) {
+            Permission::create(['name' => $permission]);
+        }
 
-## Security Vulnerabilities
+        $admin->givePermissionTo(Permission::all());
+        $manager->givePermissionTo(['ajouter employé', 'modifier employé', 'voir employés']);
+        $employe->givePermissionTo('voir employés'); 
+    }
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### users seeder 
+   public function run(): void
+    {
+        $admin = User::create([
+            'name' => 'abdelouafi',
+            'email' => 'abdelouuafioubenali@gmail.com',
+            'password' => 'kizaru2004',
+            'entreprise_id' => '1',
+            'role' => 'Admin'
 
-## License
+        ]);
+        $admin->assignRole('Admin');
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+        $Employe = User::create([
+            'name' => 'Amina',
+            'email' => 'amina@gmail.com',
+            'password' => ' ',
+            'role' => 'Employe',
+            'entreprise_id' => '1',
+        ]);
+        $Employe->assignRole('Employe');
+
+
+        $Manager = User::create([
+            'name' => 'ali yara',
+            'email' => 'aliyara@gmail.com',
+            'password' => '123456789',
+            'role' => 'Manager',
+            'entreprise_id' => '1',
+        ]);
+        $Manager->assignRole('Manager');
+
+        $RH = User::create([
+            'name' => 'kizaru',
+            'email' => 'kizaru@gmail.com',
+            'password' => '123456789',
+            'role' => 'Manager',
+            'entreprise_id' => '1',
+        ]);
+        $RH->assignRole('RH');
+    }
+
+
+### les route 
+
+- **le departements creud (departements/cerate ...)** : /departements
+
+- **le formasion creud (formasion/cerate ...)** : /formasion
+
+- **le posts creud (posts/cerate ...)** : /posts
+
+- **le users creud (users/cerate ...)** : /users
+
+- **le mail creud (/mail)** : /mail  <!-- pour accipte dommonde de conger-->
+
+- **le users creud (users/cerate ...)** : /users
+
+
+
+
