@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-3xl mx-auto px-6 py-10 bg-white rounded-lg shadow-md">
+<div class="max-w-3xl mx-auto px-6 py-10 bg-white rounded-lg shadow-md ml-[29rem]">
     <h1 class="text-4xl font-semibold text-gray-800 mb-6">Create New Department</h1>
 
     <!-- Affichage des erreurs générales -->

@@ -11,8 +11,8 @@ class RoleSeeder extends Seeder
     {
         $admin = Role::create(['name' => 'Admin']);
         $manager = Role::create(['name' => 'Manager']);
-        $employe = Role::create(['name' => 'Employé']);
-
+        $employe = Role::create(['name' => 'Employe']);
+        $rh = Role::create(['name' => 'RH']);
         $permissions = ['ajouter employé', 'modifier employé', 'supprimer employé', 'voir employés'];
 
         foreach ($permissions as $permission) {
@@ -20,7 +20,8 @@ class RoleSeeder extends Seeder
         }
 
         $admin->givePermissionTo(Permission::all());
-        $manager->givePermissionTo(['ajouter employé', 'modifier employé', 'voir employés']);
+        $manager->x(['ajouter employé', 'modifier employé', 'voir employés']);
         $employe->givePermissionTo('voir employés');
+        $rh->givePermissionTo(['ajouter employé', 'modifier employé', 'voir employés']);
     }
 }

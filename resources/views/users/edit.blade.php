@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mr-[10rem]">
     <div class="mb-8">
         <h2 class="text-2xl font-bold text-gray-800">Mettre à jour l'utilisateur</h2>
         <p class="mt-2 text-sm text-gray-600">Veuillez remplir tous les champs requis pour mettre à jour le compte utilisateur.</p>
@@ -68,7 +68,7 @@
                         {{-- <option value="">Sélectionner un rôle</option> --}}
                         @foreach($roles as $role)
                             <option class="block text-sm" value="{{ $role->id }}" {{ old('roleId', $user->role_id) == $role->id ? 'selected' : '' }}>
-                                {{ $role->nom }}
+                                {{ $role->name }}
                             </option>
                         @endforeach
                     </select>
@@ -85,8 +85,8 @@
                     <select name="PostName" id="postId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                         <option value="">Sélectionner un poste</option>
                         @foreach($posts as $post)
-                            <option value="{{ $post->id }}" {{ old('postId', $user->post_id) == $post->id ? 'selected' : '' }}>
-                                {{ $post->nom }}
+                            <option value="{{ $post->title }}" {{ old('postId', $user->post_id) == $post->id ? 'selected' : '' }}>
+                                {{ $post->title }}
                             </option>
                         @endforeach
                     </select>
