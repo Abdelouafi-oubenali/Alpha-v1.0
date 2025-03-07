@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Role;
 use App\Models\Post;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\UtilisateurCreeMail;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Role;
+use App\Models\User;
+use App\Models\Formation;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Mail\UtilisateurCreeMail;
+use App\Models\CongerJour;
+use App\Models\Parcours;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 
 
 class UserController extends Controller
@@ -19,7 +23,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(10); 
+        $users = User::paginate(10);
         return view('users.index',compact('users'));
     }
 
@@ -47,7 +51,20 @@ class UserController extends Controller
             'posIdt' => $request->PostName,
             'password' => Hash::make($password),
             'téléphone' => $request->téléphone,
-            'entreprise_id' => 1,
+            'entreprise_id' => 1, 
+        ]);
+        Parcours::create([
+            'user_id' => $user->id, 
+            'titre' => 'Utilisateur créé', 
+            'date_debut' => Carbon::now() ,
+            'post' => $request->PostName
+        ]);
+        CongerJour::create([
+            'user_id' => $user->id,
+            'date_debut' => Carbon::now(),
+            'date_fin' => Carbon::now(),
+            'type_conge' => 'defolte',
+            'nombre_jours' => 0
         ]);
 
         $user->assignRole($request->roleName);
@@ -65,9 +82,18 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $roles = Role::all();
         $posts = Post::all();
-        return view('users.show',compact('user','roles','posts'));
+        $parcoure = Parcours::all();
+        $parcours = $user->parcours;
+        $formations = $user->formations()->distinct()->get();
+        // dd($formations);
+
+        // dd($parcoure);
         
+        // dd($formations);
+
+        return view('users.show', compact('user', 'roles', 'posts', 'formations','parcours'));
     }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -113,4 +139,46 @@ class UserController extends Controller
         $department->delete();
         return redirect()->route('users.index')->with('success', 'deleted');
     }
+
+
+     public function assignFormationPage(Request $id)
+    {
+        $user = User::findOrFail($id);
+        $formations = Formation::all();
+        return view('users.assign-formation', compact('user', 'formations'));
+     }
+
+     public function showFormations()
+     {
+         $formations = Formation::all();
+         $users = User::all();
+         return view('users.assign-formation', compact('formations','users'));
+     }
+
+
+     public function assignFormation(Request $request, $formationId = null)
+     {
+         if (!$formationId) {
+             return redirect()->back()->with('error', 'ID de formation manquant.');
+         }
+     
+         $usersIds = $request->input('selected_users', []);
+         $formation = Formation::findOrFail($formationId);
+     
+         foreach ($usersIds as $userId) {
+             $user = User::findOrFail($userId);
+             if (!$user->formations()->where('formation_id', $formationId)->exists()) {
+                 $user->formations()->attach($formationId);
+                 Parcours::create([
+                     'user_id' => $user->id, 
+                     'titre' => 'Inscription à la formation', 
+                     'date_debut' => Carbon::now()
+                 ]);
+             }
+         }
+     
+         return redirect('formasion')->with('success', 'Utilisateurs ajoutés à la formation et parcours mis à jour !');
+     }
+     
+     
 }
