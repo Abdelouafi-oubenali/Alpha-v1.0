@@ -19,7 +19,7 @@
           
           <!-- Étapes -->
           <div class="relative z-10 flex flex-col items-center">
-            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">1</div>
+            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">2</div>
             <div class="mt-2 text-sm font-medium">Inscription</div>
             <div class="text-xs text-gray-500">15/02/2025</div>
           </div>

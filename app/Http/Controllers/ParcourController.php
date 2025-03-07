@@ -21,12 +21,12 @@ class ParcourController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'titre' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'date_debut' => 'required|date',
-            'date_fin' => 'nullable|date|after_or_equal:date_debut',
-        ]);
+        // $request->validate([
+        //     'titre' => 'required|string|max:255',
+        //     'description' => 'nullable|string',
+        //     'date_debut' => 'required|date',
+        //     'date_fin' => 'nullable|date|after_or_equal:date_debut',
+        // ]);
 
         Parcours::create([
             'user_id' => auth()->id(),
