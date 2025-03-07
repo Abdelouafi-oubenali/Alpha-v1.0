@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mr-[10rem]">
     <div class="mb-8">
         <h2 class="text-2xl font-bold text-gray-800">Créer un nouvel utilisateur</h2>
         <p class="mt-2 text-sm text-gray-600">Veuillez remplir tous les champs requis pour créer un compte utilisateur.</p>
@@ -80,10 +80,10 @@
                    <div class="col-span-2 md:col-span-1">
                     <label for="postId" class="block text-sm font-medium text-gray-700">post</label>
                     <select name="PostName" id="postId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" style="color: black">
-                        <option value="postId" style="color: black">Sélectionner post</option>
                         @foreach($posts as $post)
-                            <option value="{{ $post->id }}" {{ old('postId') == $post->id ? 'selected' : '' }}>
-                                {{ $post->nom }}
+                           <option value="postId" style="color: black">Sélectionner post</option>
+                            <option value="{{ $post->title }}" {{ old('postId') == $post->id ? 'selected' : '' }}>
+                                {{ $post->title }}
                             </option>
                         @endforeach
                     </select>

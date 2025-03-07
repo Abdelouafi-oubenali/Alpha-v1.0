@@ -50,6 +50,7 @@ class UserController extends Controller
             'role' => $request->roleName,
             'posIdt' => $request->PostName,
             'password' => Hash::make($password),
+            'type_contrat' => $request->type_contrat,
             'téléphone' => $request->téléphone,
             'entreprise_id' => 1, 
         ]);
@@ -57,6 +58,7 @@ class UserController extends Controller
             'user_id' => $user->id, 
             'titre' => 'Utilisateur créé', 
             'date_debut' => Carbon::now() ,
+            'contract' => $request->type_contrat,
             'post' => $request->PostName
         ]);
         CongerJour::create([
@@ -68,7 +70,7 @@ class UserController extends Controller
         ]);
 
         $user->assignRole($request->roleName);
-        Mail::to($user->email)->send(new UtilisateurCreeMail($user, $password));
+        // Mail::to($user->email)->send(new UtilisateurCreeMail($user, $password));
 
         return redirect('users')->with('success', 'Utilisateur ajouté et email envoyé !');
     }
@@ -86,11 +88,6 @@ class UserController extends Controller
         $parcours = $user->parcours;
         $formations = $user->formations()->distinct()->get();
         // dd($formations);
-
-        // dd($parcoure);
-        
-        // dd($formations);
-
         return view('users.show', compact('user', 'roles', 'posts', 'formations','parcours'));
     }
     
@@ -125,8 +122,15 @@ class UserController extends Controller
 
             // 'entreprise_id' => 1, 
         ]);
+        Parcours::create([
+            'user_id' => $user->id, 
+            'titre' => 'Utilisateur créé', 
+            'date_debut' => Carbon::now(),
+            'contract' => $request->type_contrat,
+            'post' => $request->PostName
+        ]);
         return redirect('users')->with('success', 'departement ajoutée avec succès !');
-
+    
     }
 
     /**
@@ -155,9 +159,10 @@ class UserController extends Controller
          return view('users.assign-formation', compact('formations','users'));
      }
 
-
-     public function assignFormation(Request $request, $formationId = null)
+     public function assignFormation(Request $request)
      {
+         $formationId = $request->input('formation_id'); 
+     
          if (!$formationId) {
              return redirect()->back()->with('error', 'ID de formation manquant.');
          }

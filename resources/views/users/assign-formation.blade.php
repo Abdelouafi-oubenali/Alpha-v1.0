@@ -11,10 +11,9 @@
         <h1 class="text-3xl font-bold text-center mb-8 text-blue-700">Assignation des Formations</h1>
         
         <div class="bg-white shadow-md rounded-lg p-6">
-            <form action="{{ route('assignFormation', ['formationId' => $formations->first()->id]) }}" method="POST">
-                <!-- CSRF token for security -->
+            <form action="{{ route('assignFormation') }}" method="POST">
                 @csrf
-
+            
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Formulaire de Sélection de Formation -->
                     <div>
@@ -25,10 +24,8 @@
                             @endforeach
                         </select>
                     </div>
-
-          
                 </div>
-
+            
                 <!-- Liste des Employés -->
                 <div class="mt-6">
                     <h2 class="text-xl font-semibold mb-4 text-gray-800">Liste des Employés</h2>
@@ -58,7 +55,7 @@
                         </table>
                     </div>
                 </div>
-
+            
                 <!-- Boutons d'Action -->
                 <div class="flex justify-end space-x-4 mt-6">
                     <button type="button" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300" onclick="window.location.reload()">

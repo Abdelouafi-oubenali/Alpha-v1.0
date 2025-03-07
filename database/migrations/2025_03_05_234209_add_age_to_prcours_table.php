@@ -23,7 +23,6 @@ return new class extends Migration
     {
         Schema::table('Parcours', function (Blueprint $table) {
             $table->dropColumn('post');
-            
         });
     }
 };
