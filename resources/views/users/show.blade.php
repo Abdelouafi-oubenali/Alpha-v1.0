@@ -19,7 +19,7 @@
         <<h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Suivi des {{ $user->name}}</h1>
       
         <!-- Barre d'étapes -->
-        <div class="relative my-12">
+        {{-- <div class="relative my-12">
           <div class="flex items-center justify-between mb-12">
             <!-- Ligne de connexion -->
             <div class="absolute left-0 top-1/2 transform -translate-y-1/2 h-1 bg-gray-300 w-full"></div>
@@ -28,9 +28,10 @@
             <div class="relative z-10 flex flex-col items-center">
               <div class="w-8 h-8 
                   @if(empty($user->posIdt)) 
-                      bg-gray-300
-                  @else
                       bg-blue-600
+                  @else
+                   bg-gray-300
+                     
                   @endif
                   rounded-full flex items-center justify-center text-white font-bold">
                   1
@@ -86,7 +87,7 @@
               <div class="mt-2 text-sm font-medium">Enroler</div>
             </div>
           </div>
-        </div>
+        </div> --}}
         <!-- Chronologie des étapes -->
         <div class="relative">
             <div class="border-l-4 border-blue-500 absolute h-full left-4 top-0"></div>
@@ -118,10 +119,10 @@
                         </svg>
                     </div>
                     <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-md">
-                        <h3 class="font-bold text-xl text-gray-800 mb-2">jobs</h3>
+                        <h3 class="font-bold text-xl text-gray-800 mb-2">Posts</h3>
                         @foreach($parcours as $cariare)
-                        <p class="text-gray-600 mb-1"> {{$user->posIdt }}</p>
-                        <p class="text-sm text-gray-500"> {{ $user->created_at }}</p>
+                        <p class="text-gray-600 mb-1 font-bold"> {{$cariare->post }}</p>
+                        <p class="text-sm text-gray-500"> {{ $cariare->date_debut }}</p>
                         @endforeach
                     </div>
                 </div>
@@ -134,20 +135,17 @@
                         </svg>
                     </div>
                     <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-md">
-                        <h3 class="font-bold text-xl text-gray-800 mb-2">Contrat {{$user->type_contrat}}</h3>
-                        <p class="text-gray-600 mb-1">TechInnovate</p>
-                        <p class="text-sm text-gray-500">2020 - Présent</p>
+                        <h3 class="font-bold text-xl text-gray-800 mb-2">Contrat</h3>
+
+                        @foreach($parcours as $cariare)
+                           <p class="text-gray-600 mb-1 font-bold">{{$cariare->contract}}</p>
+                           <p class="text-sm text-gray-500">{{$cariare->date_debut}}</p>
+                        @endforeach
+
                     </div>
                 </div>
 
-                <!-- Étape 4 : Promotion -->
-                <div class="relative">
-                    <div class="absolute -left-[52px] top-1 bg-yellow-500 text-white rounded-full w-12 h-12 flex items-center justify-center">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
-                        </svg>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>

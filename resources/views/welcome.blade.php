@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Sidebar + Content -->
-    <div class="flex h-screen overflow-hidden">    
+    <div class="flex h-screen overflow-hidden ml-[19rem]">    
         <!-- Main content -->
         <div class="flex flex-col w-0 flex-1 overflow-hidden">
             <div class="relative z-10 flex-shrink-0 flex h-16 bg-white shadow">

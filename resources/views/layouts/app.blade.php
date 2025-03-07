@@ -22,7 +22,7 @@
             <!-- Sidebar and Main Content -->
             <div class="flex">
                 <!-- Sidebar -->
-                <div class="hidden md:flex md:flex-shrink-0" style="height:100vh">
+                <div class="hidden md:flex md:flex-shrink-0 fixed " style="height:100vh">
                     <div class="flex flex-col w-64">
                         <div class="flex flex-col h-0 flex-1 bg-blue-900">
                             <div class="flex items-center h-16 flex-shrink-0 px-4 bg-blue-800">

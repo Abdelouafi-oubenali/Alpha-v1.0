@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 ml-[17rem]">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6 pb-4 border-b border-gray-200">
         <h2 class="text-2xl font-bold text-gray-800">Liste des Départements</h2>
         <a href="{{ route('departements.create') }}" class="mt-3 md:mt-0 inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 active:bg-blue-700 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-300 transition ease-in-out duration-150">

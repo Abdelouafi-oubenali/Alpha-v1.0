@@ -53,8 +53,8 @@ Route::view('/attonte', 'conges.attonte');
 // Route::put('departments/{department}', [DepartmentController::class, 'update'])->name('departements.update');
 Route::get('/user/formation', [UserController::class, 'showFormations']);
 Route::post('/user/formation', [UserController::class, 'assignFormation'])->name('assignFormation'); //clack sur assign formasion
-
-Route::post('/user/formation/{formationId}', [UserController::class, 'assignFormation'])->name('assignFormation');
+Route::post('/user/formation', [UserController::class, 'assignFormation'])->name('assignFormation');
+// Route::post('/user/formation/{formationId}', [UserController::class, 'assignFormation'])->name('assignFormation');
 
 
 
