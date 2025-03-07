@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use  App\Models\Parcours;
+use  App\Models\Conges;
+
 use function PHPUnit\Framework\returnSelf;
 
 class User extends Authenticatable
@@ -50,6 +52,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Parcours::class);
     }
+
+    public function congers()
+{
+    return $this->hasMany(Conges::class, 'user_id');
+    
+
+}
 
 
     /**

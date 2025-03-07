@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Conges;
 
 class Employe extends Model
 {
@@ -22,5 +23,9 @@ class Employe extends Model
 
     public function contrat(){
         return $this->belongsTo(Contrat::class);
+    }
+    public function conges()
+    {
+        return $this->hasMany(Conges::class);
     }
 }

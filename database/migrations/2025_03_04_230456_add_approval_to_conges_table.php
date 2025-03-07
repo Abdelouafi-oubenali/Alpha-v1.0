@@ -11,16 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('role')->nullable(false)->change(); 
+        Schema::table('conges', function (Blueprint $table) {
+            $table->boolean('admin_approved')->default(false);
+            $table->boolean('manager_approved')->default(false);
         });
     }
-    
+
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('role')->nullable()->change(); 
+        Schema::table('conges', function (Blueprint $table) {
+            //
         });
     }
-    
 };
