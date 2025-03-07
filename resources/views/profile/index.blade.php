@@ -8,7 +8,11 @@
             <div class="relative">
                 <div class="h-48 bg-gradient-to-r from-blue-500 to-purple-600"></div>
                 <div class="absolute bottom-0 left-8 transform translate-y-1/2">
-                    <img src="https://intranet.youcode.ma/storage/users/profile/thumbnail/1139-1727859974.JPG" alt="Photo de profil" class="rounded-full border-4 border-white w-24 h-24 object-cover">
+                    @if($user->photo_profil)
+                        <img class="rounded-full border-4 border-white w-24 h-24 object-cover" src="{{ asset('storage/' . $user->photo_profil) }}" alt="User Profile Picture">
+                    @else
+                        {{-- <img class="rounded-full border-4 border-white w-24 h-24 object-cover" src="{{ asset('images/xYwSYHvOzEFOyywPWPvM72ahiVAuY2SiNyVUCdkd.png') }}" alt="Default Avatar"> --}}
+                    @endif
                 </div>
             </div>
             
