@@ -38,10 +38,13 @@ class User extends Authenticatable
         return $this->hasOne(Employe::class);
     }
 
-    public function formations(): HasMany
+    public function formations()
     {
-        return $this->hasMany(Formation::class, 'employe_id');
+        return $this->belongsToMany(Formation::class, 'formation_user');
+        // return $this->hasMany(Formation::class);
+
     }
+    
 
     public function carrieres(): HasMany
     {
@@ -56,9 +59,10 @@ class User extends Authenticatable
     public function congers()
 {
     return $this->hasMany(Conges::class, 'user_id');
-    
-
 }
+
+
+
 
 
     /**
