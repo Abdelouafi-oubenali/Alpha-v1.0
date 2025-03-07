@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 ml-[20rem]">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6 pb-4 border-b border-gray-200">
         <h2 class="text-2xl font-bold text-gray-800">Gestion des utilisateurs</h2>
@@ -62,10 +63,14 @@
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0 h-10 w-10">
-                                        <img class="h-10 w-10 rounded-full object-cover" 
-                                             src="{{ $user->photo_profile ? asset('storage/' . $user->photo_profile) : asset('images/default-avatar.png') }}" 
-                                             alt="{{ $user->name }}">
+                                        @if($user->photo_profil)
+                                            <img class="h-10 w-10 rounded-full object-cover" src="{{ asset('storage/' . $user->photo_profil) }}" alt="User Profile Picture">
+                                        @else
+                                            <img class="h-10 w-10 rounded-full object-cover" src="{{ asset('images/xYwSYHvOzEFOyywPWPvM72ahiVAuY2SiNyVUCdkd.png') }}" alt="Default Avatar">
+                                        @endif
                                     </div>
+                                    
+                                    
                                     <div class="ml-4">
                                         <div class="text-sm font-medium text-gray-900">
                                             {{ $user->name }}

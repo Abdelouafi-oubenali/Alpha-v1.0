@@ -44,8 +44,7 @@ Route::middleware('role:Admin|RH|Manager')->group(function(){
 
 Route::middleware('role:Employe|Manager')->group(function(){
     Route::resource('conges', CongesController::class);
-Route::view('/attonte', 'conges.attonte');
-
+    Route::view('/attonte', 'conges.attonte');
 });
 
 // Route::get('/conges/attonte', [CongesController::class, 'attonte'])->name('conges.attonte');

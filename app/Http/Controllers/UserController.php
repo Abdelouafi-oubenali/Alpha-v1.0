@@ -42,38 +42,59 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $password = Str::random(10); 
-
+        // Validation des données
+        // $request->validate([
+        //     'nom' => 'required|string|max:255',
+        //     'email' => 'required|email|unique:users,email',
+        //     'roleName' => 'required|string',
+        //     'PostName' => 'required|string',
+        //     'type_contrat' => 'required|string',
+        //     'téléphone' => 'required|string',
+        //     'photo_profile' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validation d'image
+        // ]);
+    
+        $password = Str::random(10);
+    
+        // Traitement de l'image
+        $photoPath = null;
+        if ($request->hasFile('photo_profile')) {
+            $photoPath = $request->file('photo_profile')->store('photos_profiles', 'public');
+        }
+    
         $user = User::create([
             'name' => $request->nom,
             'email' => $request->email,
             'role' => $request->roleName,
             'posIdt' => $request->PostName,
             'password' => Hash::make($password),
+            'photo_profil' => $photoPath, // Enregistrement du chemin de l'image
             'type_contrat' => $request->type_contrat,
             'téléphone' => $request->téléphone,
-            'entreprise_id' => 1, 
+            'entreprise_id' => 1,
         ]);
+    
         Parcours::create([
-            'user_id' => $user->id, 
-            'titre' => 'Utilisateur créé', 
-            'date_debut' => Carbon::now() ,
+            'user_id' => $user->id,
+            'titre' => 'Utilisateur créé',
+            'date_debut' => Carbon::now(),
             'contract' => $request->type_contrat,
-            'post' => $request->PostName
+            'post' => $request->PostName,
         ]);
+    
         CongerJour::create([
             'user_id' => $user->id,
             'date_debut' => Carbon::now(),
             'date_fin' => Carbon::now(),
             'type_conge' => 'defolte',
-            'nombre_jours' => 0
+            'nombre_jours' => 0,
         ]);
-
+    
         $user->assignRole($request->roleName);
         // Mail::to($user->email)->send(new UtilisateurCreeMail($user, $password));
-
+    
         return redirect('users')->with('success', 'Utilisateur ajouté et email envoyé !');
     }
+    
     
 
     /**
